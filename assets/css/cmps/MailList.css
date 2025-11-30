@@ -1,0 +1,23 @@
+ /* mail list */
+
+.mail-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+
+    height: 100vh;
+
+    margin: 0;
+    padding: 20px 20px 0 0;
+    border-radius: 8px;
+
+    background-color: var(--mail-list-bg-clr);
+}
+
+.mail-list li {
+    background-color: var(--clr1bg);
+}
+
+.mail-list li.loading {
+    opacity: 0.7;
+}

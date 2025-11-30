@@ -1,0 +1,32 @@
+.mail-header {
+    display: flex;
+    place-items: center;
+    justify-content: space-between;
+    border: none;
+    font-family: "Google Sans Text",'Roboto',Helvetica,Arial,sans-serif;
+    padding: 8px;
+    background: var(--mail-idx-bg-clr);
+}
+
+.header-left{
+    display: flex;
+    div{
+        padding: 0;
+    }
+}
+
+.mail-logo{
+    width: 2.5em;
+    height: auto;
+}
+
+nav {
+    display: flex;
+    place-items: center;
+    gap: 10px;
+}
+
+.mail-logo-name{
+    font: 27px 'Roboto', Arial, sans-serif;
+    color: #6D6D6D;
+}
