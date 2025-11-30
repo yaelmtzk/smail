@@ -2,7 +2,7 @@
 
 const { useState, useEffect } = React
 
-export function RightSideBar({ defaultFilter, onSetFilter }) {
+export function RightSideBar({ defaultFilter, onSetFilter, onCompose }) {
 
     const [filterByToEdit, setFilterByToEdit] = useState({ ...defaultFilter })
 
@@ -25,10 +25,11 @@ export function RightSideBar({ defaultFilter, onSetFilter }) {
 
     return (
         <section className="right-sidebar">
-            {/* <div className="side-nav-btn compose-btn">
+            <div className="side-nav-btn compose-btn"
+                onClick={onCompose}>
                 <i className="fa-solid fa-pencil"></i>
                 <p>Compose</p>
-            </div> */}
+            </div>
 
             <div className={`side-nav-btn inbox-btn ${filterByToEdit.status === 'inbox' ? 'active' : ''}`}
                 onClick={() => handleStatusChange('inbox')}

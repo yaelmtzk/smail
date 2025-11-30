@@ -1,6 +1,7 @@
 import { mailService } from "../services/mail.service.js"
 import { MailList } from "../cmps/MailList.jsx"
 import { MailDetails } from "MailDetails.jsx"
+import { NewMail } from "../cmps/NewMail.jsx"
 import { RightSideBar } from "../cmps/RightSideBar.jsx"
 import { LeftSideBar } from "../cmps/LeftSideBar.jsx"
 
@@ -12,7 +13,8 @@ export function MailIndex() {
     const [mails, setMails] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
     const [filterBy, setFilterBy] = useState(mailService.getDefaultFilter())
-    const [selectedMail, setSelectedMail] = useState(null);
+    const [selectedMail, setSelectedMail] = useState(null)
+    const [isComposeOpen, setIsComposeOpen] = useState(false)
 
     useEffect(() => {
         loadMails()
@@ -54,15 +56,15 @@ export function MailIndex() {
 
         setMails(prevMails => {
             const updated = prevMails.map(mail =>
-            mail.id === mailId
-                ? { ...mail, isStarred: mail.status !== 'trash' ? newValue : mail.isStarred }
-                : mail
+                mail.id === mailId
+                    ? { ...mail, isStarred: mail.status !== 'trash' ? newValue : mail.isStarred }
+                    : mail
             )
 
             const mailToUpdate = updated.find(mail => mail.id === mailId)
-            if (mailToUpdate && mailToUpdate.status !== 'trash'){
+            if (mailToUpdate && mailToUpdate.status !== 'trash') {
                 mailService.save(mailToUpdate).then(() => loadMails())
-                .catch(err => console.error('Failed to update starred:', err))                
+                    .catch(err => console.error('Failed to update starred:', err))
             }
             return updated
         })
@@ -74,9 +76,11 @@ export function MailIndex() {
 
         setMails(prevMails => {
             const updated = prevMails.map(mail =>
-                mail.id === mailId ? 
-                { ...mail, 
-                    status: 'trash', removedAt: date, isStarred: false } : mail
+                mail.id === mailId ?
+                    {
+                        ...mail,
+                        status: 'trash', removedAt: date, isStarred: false
+                    } : mail
             )
 
             const mailToUpdate = updated.find(mail => mail.id === mailId)
@@ -115,6 +119,7 @@ export function MailIndex() {
             <RightSideBar
                 defaultFilter={filterBy}
                 onSetFilter={onSetFilter}
+                onCompose={() => setIsComposeOpen(true)}
             />
             {selectedMail ?
                 (<MailDetails
@@ -130,6 +135,9 @@ export function MailIndex() {
                         onRemove={onRemove}
                     />)
             }
+            {isComposeOpen && (
+                <NewMail onClose={() => setIsComposeOpen(false)} />
+            )}
             <LeftSideBar />
         </section>
 
