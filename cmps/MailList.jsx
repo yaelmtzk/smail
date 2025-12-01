@@ -1,6 +1,6 @@
 const { useState, useEffect } = React
 import { MailPreview } from "MailPreview.jsx"
-import { mailService } from '../services/mail.service.js'
+import { mailService } from './services/mail.service.js'
 
 export function MailList({ loadingClass, mails, onOpenMail, onStar, onRemove }) {
 

@@ -1,4 +1,4 @@
-import { utilService } from "../../../services/util.service.js"
+import { utilService } from "./services/util.service.js"
 
 export function MailDetails({ mail, onBack }) {
 
@@ -23,7 +23,7 @@ export function MailDetails({ mail, onBack }) {
 
             <div className="mail-main">
                 <div className="avatar-container">
-                    <img src="/assets/img/avatar.png" 
+                    <img src="./assets/img/avatar.png" 
                     alt="Sender picture" className="avatar" />
                 </div>
 

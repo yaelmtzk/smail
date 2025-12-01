@@ -1,4 +1,3 @@
-// import { NewMail } from "./NewMail.jsx"
 
 const { useState, useEffect } = React
 
